@@ -1,7 +1,13 @@
 
-//Api de filmes que deu certo
+//import { apiKey } from './key.js' 
+
+let a = "https://api.themoviedb.org/3/movie/top_rated?"
+let b = "https://api.themoviedb.org/3/movie/popular?"
+let url = b
 const apiKey = "93e04690c953bc0df27725aed867a753"
-fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-BR`)
+//Api de filmes que deu certo
+console.log(apiKey)
+fetch(`${url}api_key=${apiKey}&language=pt-BR`)
     .then((resp) => resp.json())
     .then(dados => {
         dados.results.forEach((valor) => {
@@ -62,6 +68,7 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-
             const img_fav = document.createElement('img')
             img_fav.classList.add('icone')
             img_fav.classList.add('imgFav')
+            img_fav.setAttribute("name", valor.title)
             img_fav.src = "icones/coracao.png"
 
             //Paragrafo de descrição
@@ -88,8 +95,16 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-
         })
 
         //função para ocutar filmes que não está na lista de procurados
+        //local de variáveis
+        let listaPes = document.querySelectorAll('.container_filmes')
+        let container_filmes = document.querySelectorAll('.container_filmes')
+        let tituloPes = document.querySelectorAll('.titulo')
+        let input_pesquisa = document.querySelector('.input_pesquisa')
+        let containerFavoritos = document.querySelectorAll('.container_favorito')
+        let arrayFav = []//recebe dados para enviar para localStorage
+        console.log(containerFavoritos)
         function ocutar(name) {
-            let listaPes = document.querySelectorAll('.container_filmes')
+
             listaPes.forEach((lista) => {
                 let text = lista.innerHTML.toLowerCase()
 
@@ -102,13 +117,7 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-
             })
         }
 
-
-
         //pesquisar pelo filme
-        let container_filmes = document.querySelectorAll('.container_filmes')
-        let tituloPes = document.querySelectorAll('.titulo')
-        let input_pesquisa = document.querySelector('.input_pesquisa')
-
         input_pesquisa.addEventListener("input", (a) => {
 
             //transforma texto digitado em letras minusculas
@@ -144,39 +153,99 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-
         })
 
 
-        //Adicionar no favoritos
+        //Adicionar no localstorege
 
-        let favoritos = document.querySelectorAll('.container_favorito')
-        let arrayFav = []//recebe dados para enviar para localStorage
 
-        favoritos.forEach((valor) => {
-            valor.addEventListener("click", () => {
 
-                //se a chave meuFilme já exisitr no localstorage ele vai resgatar
-                //para depois adicionar os novos.
-                if (localStorage.meuFilme) {
-                    arrayFav = JSON.parse(localStorage.getItem('meuFilme'))
-                }
 
-                //inseri o nome do filme que está no atributo "name" no localstorage.
-                if (arrayFav.includes(valor.getAttribute('name'))) {
-                    //se o item já existir será removido
-                    const posicao = arrayFav.indexOf(valor.getAttribute('name'))
-                    arrayFav.splice(posicao, 1)
-                    localStorage.meuFilme = JSON.stringify(arrayFav)
-                    //adicinar coração preenchido
-                    document.querySelector('.imgFav').setAttribute("src", "icones/coracao2.png")
+
+        function addStorage(valor) {
+            let arrayFav2 = []
+            let posicao
+            //resgata pro storage
+            if (localStorage.meuTest) {
+                arrayFav2 = JSON.parse(localStorage.getItem('meuTest'))
+
+                //validação de duplicata
+                if (arrayFav2.includes(valor)) {
+                    posicao = arrayFav2.indexOf(valor)
+                    arrayFav2.splice(posicao, 1)
                 } else {
-                    //se não existir será adicionado          
-                    arrayFav.push(valor.getAttribute('name'))
-                    localStorage.meuFilme = JSON.stringify(arrayFav)
-                    //remover coração preenchido
-                    document.querySelector('.imgFav').setAttribute("src", "icones/coracao.png")
+                    //add novo item
+                    arrayFav2.push(valor)
                 }
+            }
+
+            //envia pro storage
+            localStorage.meuTest = JSON.stringify(arrayFav2)
+            console.log("Função funcionou com sucesso")
+        }
+
+        addStorage("Batman 3")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function addLocalStorege() {
+            containerFavoritos.forEach((checkFav) => {
+
+
+                checkFav.addEventListener("click", () => {
+
+                    /*se a chave meuFilme já exisitr no localstorage ele vai 
+                    resgatar os para depois adicionar os novos.*/
+                    if (localStorage.meuFilme) {
+                        arrayFav = JSON.parse(localStorage.getItem('meuFilme'))
+                    }
+
+                    /*se ao clicar já já exitir no localstorage um favorito com mesmo nome
+                    então ele será removido*/
+                    if (arrayFav.includes(checkFav.getAttribute('name'))) {
+
+                        //pocição que o item clicado está no array
+                        const posicao = arrayFav.indexOf(checkFav.getAttribute('name'))
+                        arrayFav.splice(posicao, 1)
+                        //enviando dados para localstorage
+                        localStorage.meuFilme = JSON.stringify(arrayFav)
+                        //adicinar coração vazio
+                        document.querySelector('.imgFav').setAttribute("src", "icones/coracao.png")
+
+                    } else {
+
+                        //se não existir será adicionado          
+                        arrayFav.push(checkFav.getAttribute('name'))
+                        localStorage.meuFilme = JSON.stringify(arrayFav)
+                        //adicinar coração preenchido
+                        document.querySelector('.imgFav').setAttribute("src", "icones/coracao2.png")
+
+                    }
+                })
             })
+        }
+
+        addLocalStorege()
+
+        //marcador de favorito já ativado
+        let storage = []
+        storage = JSON.parse(localStorage.getItem('meuFilme'))
+        let img = document.querySelectorAll('.imgFav')
+        img.forEach((valorIMG) => {
+            if (storage.includes(valorIMG.name)) {
+                valorIMG.src = "icones/coracao2.png"
+            }
         })
 
-
+        //função para processa a validação dos favoritos
         function filtrarFavoritos() {
             let listaPes = document.querySelectorAll('.container_filmes')
             //pegando dados do localstorange
@@ -186,7 +255,6 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-
 
             listaPes.forEach((valor) => {
                 arrayNomesFilmes.push(valor.getAttribute('name'))
-                console.log(valor)
                 return tagContainer.push(valor)
             })
 
@@ -207,7 +275,6 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-
                         tagContainer[valor].style.display = "flex"
 
                     })
-
                 }
 
                 tagContainer.forEach((style) => {
@@ -216,13 +283,14 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-
                     trueStyle.push(style.getAttribute('style'))
 
                     trueStyle.forEach((valor) => {
-                        if (valor == null) {
+                        if (valor == null || valor == "") {
                             style.style.display = "none"
 
                         }
                     })
 
                 })
+
 
                 if (trueAndFalse == true) {
                     position.forEach((valorPosition) => {
@@ -235,16 +303,25 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&language=pt-
 
         }
 
+
         //evento de click favorito
+        function removerStyle() {//quando o checkbox está desmarcado todos os items aparecem
+            listaPes.forEach((valor) => {
+                valor.style.display = ""
+            })
+
+        }
+
+        /*se o chekbox estiver ativado os varitos aparecem, senão é
+        ocultado*/
         let check = document.querySelector('.check')
         check.addEventListener("click", (e) => {
-            console.log(e)
-            if (e) {
+
+            if (check.checked) {
                 filtrarFavoritos()
+            } else {
+                removerStyle()
             }
-
-
-
 
         })
 
