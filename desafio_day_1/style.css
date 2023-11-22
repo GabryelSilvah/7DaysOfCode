@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+}
+
+body {
+    background-color: #17162e;
+}
+main{
+    margin: 50px;
+}
+
+/*Sessão de pesquisa*/
+.sessao_pesquisa h1,
+.label_favorito {
+    color: #fff;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+.sessao_pesquisa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.icone1 {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top:5.8px;
+    right: 10px;
+}
+
+.input_pesquisa {
+    border: none;
+    background-color: #ffffff98;
+    width: 500px;
+    height: 30px;
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+
+/*Sessão com aba dos filmes*/
+.sessao_filmes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.container_filme {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background-color: #1D1C3B;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.856);
+    width: 1100px;
+    padding: 10px;
+    position: relative;
+}
+
+.container_filme h3,
+.pontuacao {
+    color: white;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+.container_icone{
+    display: flex;
+    gap: 10px;
+}
+.icone {
+    height: 15px;
+    width: 15px;
+}
+
+.container_filme .descricao {
+    color: white;
+    width: 400px;
+    position: absolute;
+    right: 30px;
+    font-family: 'Kumbh Sans', sans-serif;
+
+}
+
+.container_pontuacao {
+    margin-top: 10px;
+    display: flex;
+    gap: 30px;
+}
+
+.img_filme {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}

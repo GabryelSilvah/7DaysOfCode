@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    background-color: #17162e;
+}
+
+/*Sessão de pesquisa*/
+.sessao_pesquisa h1,
+.label_favorito {
+    color: #fff;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+.sessao_pesquisa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.icone1 {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    top: 5.8px;
+    right: 10px;
+}
+
+.input_pesquisa {
+    border: none;
+    background-color: #ffffff98;
+    width: 500px;
+    height: 30px;
+    border-radius: 10px;
+    padding: 5px 15px;
+}
+
+
+#lista {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.img_filmes {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.container_filmes {
+    padding: 10px;
+    height: 200px;
+    width: 90vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #1D1C3B;
+    border-radius: 5px;
+    gap: 10px;
+    position: relative;
+}
+
+.titulo {
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.descricao {
+    
+    width: 600px;
+    position: absolute;
+    right: 10px;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: justify;
+
+}
+
+.container_fav_and_nota {
+    display: flex;
+    gap: 10px;
+    color: #fff;
+}
+
+.container_filmes h3 {
+
+
+    font-size: 0.8rem;
+
+}
+
+.icone {
+    height: 15px;
+    width: 15px;
+}
+
+.container_favorito,
+.container_pontuacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container_left {
+    width: 200px;
+}
