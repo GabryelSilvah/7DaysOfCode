@@ -6,8 +6,8 @@ Esse foi um desafio sugerido pelo meu professor da faculdade e proposto pela Alu
 
 <div style="width:100vw;display:flex;justify-content:center; gap:10px;flex-wrap:wrap;">
   
-<img style="width:300px;"  src="(https://github.com/GabryelSilvah/7DaysOfCode/assets/139282381/6549679a-a001-4ac8-b216-d8765be19b5f">
+<img style="width:300px;" src="https://github.com/GabryelSilvah/7DaysOfCode/assets/139282381/6549679a-a001-4ac8-b216-d8765be19b5f">
 
-  <img style="width:300px" src="(https://github.com/GabryelSilvah/7DaysOfCode/assets/139282381/1f1814ac-8ad8-4f07-9a18-de76a2b91669">
+  <img style="width:300px" src="https://github.com/GabryelSilvah/7DaysOfCode/assets/139282381/1f1814ac-8ad8-4f07-9a18-de76a2b91669">
   
 </div>
